@@ -9,26 +9,28 @@ PBSI - Práctica de Firma y Sobre Digital
   ```
   2.  Generar una llave pública RSA:
   ```console
-  openssl rsa -in alice_privkey.key -pubout -out nombreBecario_pubkey.pem
+  openssl rsa -in nombreBecario_privkey.key -pubout -out nombreBecario_pubkey.key
   ```
-  3. Subir su llave pública a este repositorio en su rama correspondiente.
-
-  4. Descargar los archivos MegaSobre.enc y MegaSobre.key de este repositorio e intentar descifrarlo con su llave pública. Únicamente un becario podrá descifrarlo de manera correcta, es decir, obteniendo un resultado coherente.
+  3. Subir su llave pública a una carpeta de nombre:
+  `"Practicas/P10 - Firma y Sobre Digital/Repositorio"`,
+  que es un repositorio de llaves en Google Drive.
+  
+  4. Descargar los archivos `MegaSobre.enc` y `MegaSobre.key` de los archivos de la práctica e intentar descifrarlo con su llave pública. Únicamente un becario podrá descifrarlo de manera correcta, es decir, obteniendo el resultado correcto.
   
   ### Descifrar:
-  Para descifrar un archivo en esta práctica se tendrán dos archivos, por fines de claridad pondremos extensión .key a las llaves y extensión .enc a los archivos con un mensaje cifrado. Haremos el ejemplo de descifrar el archivo MegaSobre.enc. 
+  Para descifrar un archivo en esta práctica se tendrán dos archivos, por fines de claridad pondremos extensión .key a los archivos con llaves y extensión .enc a los archivos con un mensaje cifrado. Aquí mostramos el ejemplo de descifrar el archivo MegaSobre.enc.
   
   MegaSobre.enc esta cifrado con MegaSobre.key que es una llave AES de 256 bits y esta llave está cifrada con la llave pública RSA de un becario. Las instrucciones para descifrar son las siguientes:
   
-  + Descrifrar MegaSobre.key con OpenSSL/SuPrograma y su llave privada RSA.
+  + Descrifrar MegaSobre.key con `un programa realizado por ustedes` y su llave privada RSA.
+
+  + Descifrar MegaSobre.enc con  OpenSSL y la llave AES256 descrifrada (resultado de MegaSobre.key)
   ```console
-  openssl rsautl -decrypt -inkey nombreBecario_privkey.key -in MegaSobre.key -out LlaveAES.txt
-  ```
-  + Descifrar MegaSobre.enc con  OpenSSL y LlaveAES.txt
-  ```console
-  openssl enc -d -in MegaSobre.enc -a -pass file:LlaveAES.txt -aes256
+  openssl enc -d -in MegaSobre.enc -a -pass file:LlaveAES.key -aes256
   ```
   5. El becario correcto encontrará una pregunta que debe responder y un sobre más con su respectiva llave cifrada. Esta última llave está cifrada con la llave pública de algún otro becario.
+  
+  6. El becario tomará su respuesta y obtendrá su hash con `SHA256`, firmará este hash y generará el archivo `nombreBecario.firma`. Generará una llave AES256, cifrará la respuesta con esta llave y la llave irá cifrada con la llave pública RSA en la carpeta de la práctica.
   
   No habrá un mensaje cifrado dos veces con la misma llave pública, es decir, cada becario sólo tendrá que descifrar a lo más un mensaje.
   
