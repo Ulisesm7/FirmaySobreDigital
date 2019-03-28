@@ -28,11 +28,15 @@ PBSI - Práctica de Firma y Sobre Digital
   ```console
   openssl enc -d -in MegaSobre.enc -a -pass file:LlaveAES.key -aes256
   ```
-  5. El becario correcto encontrará una pregunta que debe responder y un sobre más con su respectiva llave cifrada. Esta última llave está cifrada con la llave pública de algún otro becario.
+  5. El becario correcto encontrará una pregunta que debe responder, únicamente debe responder la pregunta que esté firmada por el instructor, y un sobre más con su respectiva llave cifrada. Esta última llave está cifrada con la llave pública de algún otro becario.
   
-  6. El becario tomará su respuesta y obtendrá su hash con `SHA256`, firmará este hash y generará el archivo `nombreBecario.firma`. Generará una llave AES256, cifrará la respuesta con esta llave y la llave irá cifrada con la llave pública RSA en la carpeta de la práctica.
+  6. El becario tomará su respuesta y obtendrá su hash con `SHA256`, firmará este hash y generará el archivo `nombreBecario.firma`. Generará una llave AES256, cifrará la respuesta con esta llave y la llave irá cifrada con la llave pública RSA en la carpeta de la práctica. Deberá subir los archivos con la `firma`, la `llave cifrada` y el `archivo cifrado` a la carpeta de entregas del becario.
   
-  No habrá un mensaje cifrado dos veces con la misma llave pública, es decir, cada becario sólo tendrá que descifrar a lo más un mensaje.
+  7. Por último, deberá subir el resto del sobre y la otra llave, cada una en un archivo a la misma carpeta en la que descargaron MegaSobre.enc y MegaSobre.key
+  
+  8. Todos los becarios restantes deben descargar estos archivos e intentar descifrar.
+  
+  Nota: No habrá un mensaje cifrado dos veces con la misma llave pública, es decir, cada becario sólo tendrá que descifrar a lo más un mensaje.
   
   Su deber es obtener el mensaje final. Cada que algún becario logre descifrar exitosamente un mensaje, debe responder la pregunta asociada y formar un nuevo mensaje, este mensaje se enviará al destinatario indicado para resolver el siguiente sobre.
   
