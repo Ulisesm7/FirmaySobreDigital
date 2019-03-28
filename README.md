@@ -34,7 +34,7 @@ PBSI - Práctica de Firma y Sobre Digital
   ```
   5. El becario correcto encontrará una pregunta que debe responder, únicamente debe responder la pregunta que esté firmada por el instructor, y una secuencia de bytes mas, que son sobre más, que es un mensaje y su respectiva llave cifrada. Esta última llave está cifrada con la llave pública de algún otro becario.
   
-  6. El becario tomará su respuesta y obtendrá su hash con `SHA256`, firmará este hash y generará el archivo `nombreBecario.firma`. Generará una llave AES256, cifrará la respuesta con esta llave y la llave irá cifrada con la `llave pública RSA del instructor`. Deberá subir archivos con la `firma`, la `llave cifrada` y el `archivo cifrado` a la carpeta de entregas del becario.
+  6. El becario tomará su respuesta y obtendrá su hash con `SHA256`, firmará este hash y generará el archivo `nombreBecario.firma`. Generará una llave AES256 usando OpenSSL, cifrará la respuesta con esta llave y la llave irá cifrada con la `llave pública RSA del instructor`. Deberá subir archivos con la `firma`, la `llave cifrada` y el `archivo cifrado` a la carpeta de entregas del becario.
   
   7. Por último, deberá subir el resto del mensaje y su respectiva llave, cada una en un archivo a la misma carpeta en la que descargaron MegaSobre.enc y MegaSobre.key. Todos los becarios restantes deben descargar estos archivos e intentar descifrar.
   
